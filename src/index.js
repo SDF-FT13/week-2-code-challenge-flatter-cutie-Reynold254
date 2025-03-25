@@ -5,15 +5,31 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((response) => response.json())
     .then((data) => {
       const characterBar = document.getElementById("character-bar");
+
       data.forEach((character) => {
         const span = document.createElement("span");
         span.textContent = character.name;
+        span.style.cursor = "pointer"; // Change cursor to indicate interactivity
+
+        // Show full character details on click
         span.addEventListener("click", () => showCharacterDetails(character));
+
+        // Show image preview when hovering
+        span.addEventListener("mouseenter", () => {
+          showCharacterImage(character.image, character.name);
+        });
+
+        // Revert image back to default on mouse leave
+        span.addEventListener("mouseleave", () => {
+          resetCharacterImage();
+        });
+
         characterBar.appendChild(span);
       });
     });
 });
 
+// Function to show character details when clicked
 function showCharacterDetails(character) {
   document.getElementById("name").textContent = character.name;
   const imageElement = document.getElementById("image");
@@ -24,6 +40,23 @@ function showCharacterDetails(character) {
   currentCharacter = character;
 }
 
+// Function to show character image preview on hover
+function showCharacterImage(imageSrc, altText) {
+  const imageElement = document.getElementById("image");
+  imageElement.src = imageSrc;
+  imageElement.alt = altText;
+}
+
+// Function to reset image to default when mouse leaves
+function resetCharacterImage() {
+  document.getElementById("image").src = "assets/dummy.gif";
+  document.getElementById("image").alt = "Character's Name";
+}
+
+// Ensure `currentCharacter` is defined to avoid errors
+let currentCharacter = null;
+
+// Handling vote submission
 document.getElementById("votes-form").addEventListener("submit", (event) => {
   event.preventDefault();
 
@@ -38,6 +71,7 @@ document.getElementById("votes-form").addEventListener("submit", (event) => {
   }
 });
 
+// Reset votes button functionality
 document.getElementById("reset-btn").addEventListener("click", () => {
   if (currentCharacter) {
     currentCharacter.votes = 0;

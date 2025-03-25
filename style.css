@@ -1,13 +1,14 @@
 html {
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
 }
 
-.logo{
+.logo {
   text-align: center;
   background-color: rgb(49, 109, 179);
   color: white;
@@ -33,9 +34,23 @@ html, body {
   align-items: center;
   border-radius: 2em;
   border: 1px solid white;
+  color: white;
+  background: rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer; /* Make cursor pointer for interactivity */
 }
 
-.characterInfo{
+/* Hover effect for character names */
+#character-bar span:hover {
+  font-weight: bold;
+  background-color: white;
+  color: rgb(49, 109, 179);
+  transform: scale(1.1);
+  border: 2px solid rgb(49, 109, 179);
+}
+
+/* Character details container */
+.characterInfo {
   height: 550px;
   padding: 30px;
   font-size: 24px;
@@ -43,19 +58,45 @@ html, body {
   text-align: center;
 }
 
-input[type="submit"], button {
+/* Character Image */
+#image {
+  width: 300px;
+  height: 300px;
+  object-fit: cover; /* Ensure image maintains aspect ratio */
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* Fade-in effect when hovering over a character */
+#image.hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+/* Form styling */
+input[type="submit"],
+button {
   background-color: rgb(49, 109, 179);
   color: white;
   font-size: 18px;
   border-radius: 6px;
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: 10px;
+  border: none;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover,
+button:hover {
+  background-color: white;
+  color: rgb(49, 109, 179);
+  border: 2px solid rgb(49, 109, 179);
 }
 
 input[type="text"] {
   font-size: 3vh;
-}
-
-#image{
-  width: 300px;
-  height: 300px;
+  padding: 5px;
+  border: 1px solid rgb(49, 109, 179);
+  border-radius: 5px;
+  text-align: center;
 }
